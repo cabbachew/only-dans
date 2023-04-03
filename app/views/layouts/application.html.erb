@@ -11,9 +11,29 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <body class="flex flex-col min-h-screen">
+    <header class="bg-white shadow">
+      <div class="container mx-auto px-5 py-3 flex items-center justify-between">
+        <a href="/" class="font-bold text-2xl">OnlyDans</a>
+        <nav class="space-x-4">
+          <a href="/about" class="text-gray-600 hover:text-gray-800">About</a>
+          <a href="/contact" class="text-gray-600 hover:text-gray-800">Contact</a>
+        </nav>
+      </div>
+    </header>
+    <% if notice.present? %>
+      <p class="bg-green-50 text-green-500 rounded-lg py-2 px-4 mb-5 text-center" id="notice"><%= notice %></p>
+    <% end %>
+    <% if alert.present? %>
+      <p class="bg-red-50 text-red-500 rounded-lg py-2 px-4 mb-5 text-center" id="alert"><%= alert %></p>
+    <% end %>
+    <main class="container mx-auto mt-28 px-5 flex grow">
       <%= yield %>
     </main>
+    <footer class="bg-white shadow">
+      <div class="container mx-auto px-5 py-3 flex items-center justify-between">
+        <p class="text-gray-600">©2023 OnlyDans</p>
+      </div>
+    </footer>
   </body>
 </html>
