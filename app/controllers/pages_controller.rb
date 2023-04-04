@@ -3,4 +3,9 @@ class PagesController < ApplicationController
     @users = User.all
     @posts = Post.all
   end
+
+  def profile
+    @user = User.find(params[:id])
+    @posts = @user.posts
+  end
 end
