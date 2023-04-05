@@ -1,0 +1,16 @@
+<header class="bg-white shadow">
+  <div class="container mx-auto px-5 py-3 flex items-center justify-between">
+    <a href="/" class="font-bold text-2xl">OnlyDans</a>
+    <nav class="space-x-4">
+      <a href="/about" class="text-gray-600 hover:text-gray-800">About</a>
+      <a href="/contact" class="text-gray-600 hover:text-gray-800">Contact</a>
+      <% if user_signed_in? %>
+        <%= link_to "Profile", profile_path(current_user.id), class: "text-gray-600 hover:text-gray-800" %>
+        <%= link_to "Sign out", destroy_user_session_path, class: "text-gray-600 hover:text-gray-800", data: { turbo_method: "delete" } %>
+      <% else %>
+        <%= link_to "Sign in", new_user_session_path, class: "text-gray-600 hover:text-gray-800" %>
+        <%= link_to "Sign up", new_user_registration_path, class: "text-gray-600 hover:text-gray-800" %>
+      <% end %>
+    </nav>
+  </div>
+</header>
