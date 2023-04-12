@@ -8,6 +8,7 @@ class PagesController < ApplicationController
 
     @users = User.all
     @posts = Post.all
+    @post = Post.new
   end
 
   def profile
