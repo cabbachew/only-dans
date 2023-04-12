@@ -6,8 +6,8 @@ class PagesController < ApplicationController
       redirect_to new_user_session_path
     end
 
-    @users = User.all
-    @posts = Post.all.order("created_at DESC")
+    @users = User.all.order(first_name: :asc, last_name: :asc)
+    @posts = Post.includes(:user).order("created_at DESC")
     @post = Post.new
   end
 
