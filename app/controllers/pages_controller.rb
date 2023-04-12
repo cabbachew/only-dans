@@ -7,7 +7,7 @@ class PagesController < ApplicationController
     end
 
     @users = User.all
-    @posts = Post.all
+    @posts = Post.all.order("created_at DESC")
     @post = Post.new
   end
 
