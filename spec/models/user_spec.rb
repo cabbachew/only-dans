@@ -3,13 +3,9 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   describe "#full_name" do
     it "returns a user's full name as a string" do
-      user = User.new(
-        first_name: "John",
-        last_name: "Doe",
-        email: "john@doe.com",
-      )
+      user = build(:user, first_name: "Daniel", last_name: "Doe")
 
-      expect(user.full_name).to eq "John Doe"
+      expect(user.full_name).to eq "Daniel Doe"
     end
   end
 end
