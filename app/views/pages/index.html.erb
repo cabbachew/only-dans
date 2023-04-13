@@ -13,7 +13,7 @@
   </div>
   <div class="grow p-4">
     <h2 class="text-xl font-bold mb-4">Posts</h2>
-    <%= form_with model: @post, class: "bg-white shadow rounded-lg p-5 mb-5" do |form| %>
+    <%= form_with model: @post, class: "bg-white shadow rounded-lg p-4 mb-2" do |form| %>
       <div class="mb-5">
         <%= form.text_field :body, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
       </div>
@@ -23,7 +23,7 @@
       </div>
     <% end %>
     <% @posts.each do |post| %>
-      <div class="bg-white shadow rounded-lg p-5 mb-5">
+      <div class="bg-white shadow rounded-lg p-4 mb-2">
         <h2 class="font-bold text-2xl"><%= post.body %></h2>
         <p class="text-gray-600">by <%= post.user.full_name %></p>
       </div>
