@@ -19,6 +19,7 @@ class User < ApplicationRecord
   end
 
   def friends
-    to_friends + from_friends
+    # to_friends + from_friends
+    to_friends.where("accepted_at IS NOT NULL") + from_friends.where("accepted_at IS NOT NULL")
   end
 end
