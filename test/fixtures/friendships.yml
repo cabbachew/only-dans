@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  from_friend_id: 1
+  to_friend_id: 1
+  accepted_at: 2023-04-12 21:21:12
+
+two:
+  from_friend_id: 1
+  to_friend_id: 1
+  accepted_at: 2023-04-12 21:21:12
