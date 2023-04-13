@@ -19,7 +19,15 @@ class User < ApplicationRecord
   end
 
   def friends
-    # to_friends + from_friends
-    to_friends.where("accepted_at IS NOT NULL") + from_friends.where("accepted_at IS NOT NULL")
+    # Match users from array of accepted friend requests
+    User.where(id: sent_friendships.accepted.pluck(:to_friend_id) + received_friendships.accepted.pluck(:from_friend_id))
+  end
+
+  def received_friend_requests
+    received_friendships.pending
+  end
+
+  def sent_friend_requests
+    sent_friendships.pending
   end
 end
