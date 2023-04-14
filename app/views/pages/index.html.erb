@@ -12,18 +12,27 @@
         </div>
       </div>
     <% end %>
-    <% @users.each do |user| %>
-      <div class="bg-white shadow-md rounded-lg p-4 mb-2 flex items-center justify-between">
-        <%= link_to user.full_name, profile_path(user.id), 
-            class: "relative before:content-[''] before:absolute before:block before:w-full before:h-[2px]
-                    before:-bottom-2 before:left-0 before:bg-black
-                    before:hover:scale-x-100 before:scale-x-0 before:origin-top-left
-                    before:transition before:ease-in-out before:duration-300" %>
-        <hr class="border-gray-200 border-1 grow mx-5">
-        <div class="text-xs text-gray-600">
-          <%= current_user.friendship_status(user) %>
-        </div>
+    <div class="bg-slate-400 text-white shadow-md rounded-lg p-4 mb-2 flex items-center justify-between">
+      <%= current_user.full_name %>
+      <hr class="border-white border-1 grow mx-5">
+      <div class="text-xs text-white">
+        you
       </div>
+    </div>
+    <% @users.each do |user| %>
+      <% if user != current_user %>
+        <div class="bg-white shadow-md rounded-lg p-4 mb-2 flex items-center justify-between">
+          <%= link_to user.full_name, profile_path(user.id), 
+              class: "relative before:content-[''] before:absolute before:block before:w-full before:h-[2px]
+                      before:-bottom-2 before:left-0 before:bg-black
+                      before:hover:scale-x-100 before:scale-x-0 before:origin-top-left
+                      before:transition before:ease-in-out before:duration-300" %>
+          <hr class="border-gray-200 border-1 grow mx-5">
+          <div class="text-xs text-gray-600">
+            <%= current_user.friendship_status(user) %>
+          </div>
+        </div>
+      <% end %>
     <% end %>
   </div>
   <div class="grow p-4">
@@ -34,7 +43,7 @@
       </div>
 
       <div class="flex items-center justify-between">
-        <%= form.submit "Create Post", class: "bg-slate-500 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded" %>
+        <%= form.submit "Create Post", class: "bg-slate-400 hover:bg-slate-500 text-white font-bold py-2 px-4 rounded" %>
       </div>
     <% end %>
     
