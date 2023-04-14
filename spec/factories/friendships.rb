@@ -4,7 +4,7 @@ FactoryBot.define do
     to_friend { create(:user) }
 
     trait :accepted do
-      accepted_at { Time.now }
+      accepted_at { Time.current }
     end
   end
 end

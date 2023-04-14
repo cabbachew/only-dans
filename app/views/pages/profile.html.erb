@@ -7,14 +7,17 @@
     <p class="text-gray-600">You can't add yourself as a friend</p>
   <% when FriendshipStatus::FRIEND %>
     <p class="text-gray-600">You are friends with <%= @user.full_name %></p>
+    <%= link_to "Unfriend", destroy_friendship_path(friend_id: @user.id), data: { "turbo-method" => :delete }, class: "text-blue-500 hover:text-blue-700" %>
   <% when FriendshipStatus::REQUESTED %>
     <p class="text-gray-600">You have already sent a friend request to <%= @user.full_name %></p>
-    <%= link_to "Cancel friend request", friendship_path(friend_id: @user.id), data: { "turbo-method" => :delete }, class: "text-blue-500 hover:text-blue-700" %>
+    <%= link_to "Cancel friend request", destroy_friendship_path(friend_id: @user.id), data: { "turbo-method" => :delete }, class: "text-blue-500 hover:text-blue-700" %>
   <% when FriendshipStatus::REQUESTING %>
     <p class="text-gray-600">You have a friend request from <%= @user.full_name %></p>
+    <%= link_to "Accept friend request", update_friendship_path(friend_id: @user.id), data: { "turbo-method" => :put }, class: "text-blue-500 hover:text-blue-700" %>
+    <%= link_to "Decline friend request", destroy_friendship_path(friend_id: @user.id), data: { "turbo-method" => :delete }, class: "text-blue-500 hover:text-blue-700" %>
   <% when FriendshipStatus::NOT_FRIEND %>
     <p class="text-gray-600">You are not friends with <%= @user.full_name %></p>
-    <%= link_to "Add as friend", friendships_path(friend_id: @user.id), data: { "turbo-method" => :post }, class: "text-blue-500 hover:text-blue-700" %>
+    <%= link_to "Add as friend", create_friendship_path(friend_id: @user.id), data: { "turbo-method" => :post }, class: "text-blue-500 hover:text-blue-700" %>
   <% end %>
 </div>
 

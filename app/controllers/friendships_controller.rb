@@ -11,6 +11,16 @@ class FriendshipsController < ApplicationController
     redirect_to profile_path(params[:friend_id])
   end
 
+  def update
+    friendship = Friendship.find_by(from_friend_id: params[:friend_id], to_friend_id: current_user.id)
+    if friendship.update(accepted_at: Time.current)
+      flash[:notice] = "Friend request accepted."
+    else
+      flash[:alert] = "Unable to accept friend request."
+    end
+    redirect_to profile_path(params[:friend_id])
+  end
+
   def destroy
     user = User.find(params[:friend_id])
     friendship_status = current_user.friendship_status(user)
