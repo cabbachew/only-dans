@@ -18,6 +18,9 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
+  # def friendships
+  # end
+
   def friends
     # Match users from array of accepted friend requests
     User.where(id: sent_friendships.accepted.pluck(:to_friend_id) + received_friendships.accepted.pluck(:from_friend_id))
