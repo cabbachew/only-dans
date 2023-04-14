@@ -32,6 +32,10 @@ class User < ApplicationRecord
     end
   end
 
+  def friendship(user)
+    sent_friendships.find_by(to_friend_id: user.id) || received_friendships.find_by(from_friend_id: user.id)
+  end
+
   def friends
     # Match users from array of accepted friend requests
     User.where(id: sent_friendships.accepted.pluck(:to_friend_id) + received_friendships.accepted.pluck(:from_friend_id))
