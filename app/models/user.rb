@@ -18,8 +18,25 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
-  # def friendships
-  # end
+  INVALID = :invalid
+  FRIEND = :friend
+  REQUESTING = :requesting
+  REQUESTED = :requested
+  NOT_FRIEND = :not_friend
+
+  def friendship_status(user)
+    if user == self
+      INVALID
+    elsif friend?(user)
+      FRIEND
+    elsif requesting_friends.include?(user)
+      REQUESTING
+    elsif requested_friends.include?(user)
+      REQUESTED
+    else
+      NOT_FRIEND
+    end
+  end
 
   def friends
     # Match users from array of accepted friend requests
