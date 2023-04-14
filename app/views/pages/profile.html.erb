@@ -3,16 +3,16 @@
 <h3 class="font-bold text-2xl mb-5">Friendship</h3>
 <div class="bg-white shadow rounded-lg p-5 mb-5">
   <% case current_user.friendship_status(@user) %>
-  <% when User::INVALID %>
+  <% when FriendshipStatus::INVALID %>
     <p class="text-gray-600">You can't add yourself as a friend</p>
-  <% when User::FRIEND %>
+  <% when FriendshipStatus::FRIEND %>
     <p class="text-gray-600">You are friends with <%= @user.full_name %></p>
-  <% when User::REQUESTED %>
+  <% when FriendshipStatus::REQUESTED %>
     <p class="text-gray-600">You have already sent a friend request to <%= @user.full_name %></p>
     <%= link_to "Cancel friend request", friendship_path(friend_id: @user.id), data: { "turbo-method" => :delete }, class: "text-blue-500 hover:text-blue-700" %>
-  <% when User::REQUESTING %>
+  <% when FriendshipStatus::REQUESTING %>
     <p class="text-gray-600">You have a friend request from <%= @user.full_name %></p>
-  <% when User::NOT_FRIEND %>
+  <% when FriendshipStatus::NOT_FRIEND %>
     <p class="text-gray-600">You are not friends with <%= @user.full_name %></p>
     <%= link_to "Add as friend", friendships_path(friend_id: @user.id), data: { "turbo-method" => :post }, class: "text-blue-500 hover:text-blue-700" %>
   <% end %>

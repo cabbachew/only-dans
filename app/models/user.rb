@@ -18,23 +18,17 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
-  INVALID = :invalid
-  FRIEND = :friend
-  REQUESTING = :requesting
-  REQUESTED = :requested
-  NOT_FRIEND = :not_friend
-
   def friendship_status(user)
     if user == self
-      INVALID
+      FriendshipStatus::INVALID
     elsif friend?(user)
-      FRIEND
+      FriendshipStatus::FRIEND
     elsif requesting_friends.include?(user)
-      REQUESTING
+      FriendshipStatus::REQUESTING
     elsif requested_friends.include?(user)
-      REQUESTED
+      FriendshipStatus::REQUESTED
     else
-      NOT_FRIEND
+      FriendshipStatus::NOT_FRIEND
     end
   end
 
