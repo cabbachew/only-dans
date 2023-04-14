@@ -30,4 +30,22 @@ RSpec.describe User, type: :model do
       expect(dan1.friends).not_to include(dan2)
     end
   end
+
+  describe "#friend?" do
+    it "returns true if the users are friends" do
+      dan1 = create(:user)
+      dan2 = create(:user)
+
+      create(:friendship, :accepted, from_friend: dan1, to_friend: dan2)
+
+      expect(dan1.friend?(dan2)).to eq true
+    end
+
+    it "returns false if the users are not friends" do
+      dan1 = create(:user)
+      dan2 = create(:user)
+
+      expect(dan1.friend?(dan2)).to eq false
+    end
+  end
 end

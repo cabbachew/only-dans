@@ -23,11 +23,15 @@ class User < ApplicationRecord
     User.where(id: sent_friendships.accepted.pluck(:to_friend_id) + received_friendships.accepted.pluck(:from_friend_id))
   end
 
-  def received_friend_requests
-    received_friendships.pending
+  def requesting_friends
+    User.where(id: received_friendships.pending.pluck(:from_friend_id))
   end
 
-  def sent_friend_requests
-    sent_friendships.pending
+  def requested_friends
+    User.where(id: sent_friendships.pending.pluck(:to_friend_id))
+  end
+
+  def friend?(user)
+    friends.include?(user)
   end
 end
