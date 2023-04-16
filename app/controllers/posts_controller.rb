@@ -3,7 +3,14 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = Post.all
+    if params[:filter]
+      @posts = Post.includes(:user)
+        .where(user_id: current_user.friends)
+        .order("created_at DESC")
+    else
+      @posts = Post.includes(:user).order("created_at DESC")
+    end
+    render partial: "posts"
   end
 
   def show

@@ -35,12 +35,14 @@
       <% end %>
     <% end %>
   </div>
-  <div class="grow p-4">
+  <div class="grow p-4" data-controller="post">
     <div class="flex items-center justify-between">
       <h2 class="text-xl font-serif tracking-wider mb-4">posts</h2>
       <div class="text-xs text-slate-200">
-        <%= link_to "All", root_path, class: "text-sm text-slate-400 hover:text-slate-500 #{"underline" unless current_page?(:filter => "friends")}" %> | 
-        <%= link_to "Friends", root_path(filter: "friends"), class: "text-sm text-slate-400 hover:text-slate-500 #{"underline" if current_page?(:filter => "friends")}" %>
+        <button data-action="click->post#showAll" class="text-sm text-slate-400 hover:text-slate-500">All</button> | 
+        <button data-action="click->post#showFriends" class="text-sm text-slate-400 hover:text-slate-500">Friends</button>
+        <%# link_to "All", root_path, class: "text-sm text-slate-400 hover:text-slate-500 #{"underline" unless current_page?(:filter => "friends")}" %> | 
+        <%# link_to "Friends", root_path(filter: "friends"), class: "text-sm text-slate-400 hover:text-slate-500 #{"underline" if current_page?(:filter => "friends")}" %>
       </div>
     </div>
     <%= form_with model: @post, class: "bg-white shadow-md rounded-lg p-4 mb-2 flex" do |form| %>
@@ -52,13 +54,14 @@
         <%= form.submit "Create Post", class: "bg-slate-400 hover:bg-slate-500 text-white font-bold py-2 px-4 rounded" %>
       </div>
     <% end %>
-    
-    <% @posts.each do |post| %>
-      <div class="bg-white shadow-md rounded-lg p-4 mb-2 flex items-center justify-between">
-        <span class="text-sm"><%= post.body %></span>
-        <hr class="border-gray-200 border-1 grow mx-5">
-        <span class="text-xs text-gray-600"><%= post.user.full_name %></span>
-      </div>
-    <% end %>
+    <div data-post-target="posts">
+      <% @posts.each do |post| %>
+        <div class="bg-white shadow-md rounded-lg p-4 mb-2 flex items-center justify-between">
+          <span class="text-sm"><%= post.body %></span>
+          <hr class="border-gray-200 border-1 grow mx-5">
+          <span class="text-xs text-gray-600"><%= post.user.full_name %></span>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
