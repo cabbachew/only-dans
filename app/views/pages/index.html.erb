@@ -36,7 +36,13 @@
     <% end %>
   </div>
   <div class="grow p-4">
-    <h2 class="text-xl font-serif tracking-wider mb-4">posts</h2>
+    <div class="flex items-center justify-between">
+      <h2 class="text-xl font-serif tracking-wider mb-4">posts</h2>
+      <div class="text-xs text-slate-200">
+        <%= link_to "All", root_path, class: "text-sm text-slate-400 hover:text-slate-500 #{"underline" unless current_page?(:filter => "friends")}" %> | 
+        <%= link_to "Friends", root_path(filter: "friends"), class: "text-sm text-slate-400 hover:text-slate-500 #{"underline" if current_page?(:filter => "friends")}" %>
+      </div>
+    </div>
     <%= form_with model: @post, class: "bg-white shadow-md rounded-lg p-4 mb-2 flex" do |form| %>
       <div class="grow mr-5">
         <%= form.text_field :body, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight" %>

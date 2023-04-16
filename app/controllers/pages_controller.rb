@@ -7,8 +7,16 @@ class PagesController < ApplicationController
     end
 
     @users = User.all.order(first_name: :asc, last_name: :asc)
-    @posts = Post.includes(:user).order("created_at DESC")
     @post = Post.new
+    
+    # Include user data to avoid N+1 queries
+    if params[:filter]
+      @posts = Post.includes(:user)
+        .where(user_id: current_user.friends)
+        .order("created_at DESC")
+    else
+      @posts = Post.includes(:user).order("created_at DESC")
+    end
   end
 
   def profile
