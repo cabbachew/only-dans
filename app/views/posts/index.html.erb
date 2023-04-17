@@ -2,7 +2,7 @@
 
 <% @posts.each do |post| %>
   <div class="bg-white shadow rounded-lg p-5 mb-5">
-    <h2 class="font-bold text-2xl"><%= post.body %></h2>
+    <h2 class="font-bold text-2xl"><%= link_to post.body, post_path(post) %></h2>
     <p class="text-gray-600">by <%= post.user.full_name %></p>
   </div>
 <% end %>
