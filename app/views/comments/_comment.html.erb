@@ -1,0 +1,11 @@
+<%= render partial: "comments/child_comment", locals: { child: comment } %>
+
+<div class="ml-8">
+  <% comment.comments.each do |child| %>
+    <%= render partial: "comments/child_comment", locals: { child: child } %>
+  <% end %>
+  
+  <%= render partial: "comments/form", locals: { commentable: comment } %>
+</div>
+
+<hr class="my-4">

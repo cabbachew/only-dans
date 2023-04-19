@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   #   end
   # end
 
-  resources :posts, :comments
+  resources :posts, :comments, :likes
 
   # Define route for user profile
   get "/profile/:id", to: "pages#profile", as: "profile"

@@ -1,0 +1,6 @@
+<%= form_with model: [commentable.comments.build] do |form| %>
+  <%= form.text_field :body %>
+  <%= form.hidden_field :commentable_id, value: commentable.id %>
+  <%= form.hidden_field :commentable_type, value: commentable.class.name %>
+  <%= form.submit "Create Comment", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+<% end %>
