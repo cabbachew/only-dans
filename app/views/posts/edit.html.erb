@@ -10,4 +10,6 @@
   </div>
 <% end %>
 
+<%= link_to "Delete Post", post_path(@post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "w-max bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" %>
+
 <%= link_to "Back to Post", post_path(@post), class: "w-max bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
