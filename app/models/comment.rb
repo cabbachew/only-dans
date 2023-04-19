@@ -10,11 +10,15 @@ class Comment < ApplicationRecord
   def post
     if commentable_type == "Post"
       commentable
+    else
+      commentable.post
     end
   end
 
   # def parent
-  #   if commentable_type == "Comment"
+  #   if commentable_type == "Post"
+  #     nil
+  #   else
   #     commentable
   #   end
   # end

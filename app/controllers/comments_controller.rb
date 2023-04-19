@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   def create
     @comment = current_user.comments.build(comment_params)
-    p @comment
+
     if @comment.save!
       redirect_to post_path(@comment.post), notice: "Comment was successfully created."
     else
@@ -26,7 +26,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:body).merge(commentable_id: params[:post_id], commentable_type: "Post")
+    params.require(:comment).permit(:body, :commentable_id, :commentable_type)
   end
 
 end
