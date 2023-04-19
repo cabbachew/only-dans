@@ -17,7 +17,9 @@
     <%= comment.body %>
   </p>
 
-  <%= link_to "Delete", comment_path(comment), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "hover:underline hover:underline-offset-4" %>
+  <% if comment.user == current_user %>
+    <%= link_to "Delete", comment_path(comment), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "hover:underline hover:underline-offset-4" %>
+  <% end %>
 <% end %>
 
 <%= form_with model: [@post, @post.comments.build] do |form| %>
