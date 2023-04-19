@@ -1,8 +1,8 @@
 class CommentsController < ApplicationController
   def create
     @comment = current_user.comments.build(comment_params)
-
-    if @comment.save
+    p @comment
+    if @comment.save!
       redirect_to post_path(@comment.post), notice: "Comment was successfully created."
     else
       redirect_to post_path(@comment.post), alert: "Comment was not created."
@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
       return redirect_to post_path(@comment.post), alert: "You can only delete your own comments."
     end
     
-    if @comment.destroy
+    if @comment.destroy!
       redirect_to post_path(@comment.post), notice: "Comment was successfully deleted."
     else
       redirect_to post_path(@comment.post), alert: "Comment was not deleted."
@@ -26,7 +26,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:body).merge(post_id: params[:post_id])
+    params.require(:comment).permit(:body).merge(commentable_id: params[:post_id], commentable_type: "Post")
   end
 
 end
