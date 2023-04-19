@@ -6,6 +6,7 @@ class User < ApplicationRecord
   validates :first_name, :last_name, presence: true
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   # Friendships
   has_many :sent_friendships, class_name: 'Friendship', foreign_key: 'from_friend_id', dependent: :destroy

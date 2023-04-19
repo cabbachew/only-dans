@@ -3,7 +3,7 @@ class Comment < ApplicationRecord
   belongs_to :commentable, polymorphic: true
 
   has_many :comments, as: :commentable, dependent: :destroy
-  # has_many :likes, as: :likeable, dependent: :destroy
+  has_many :likes, as: :likeable, dependent: :destroy
 
   validates :body, presence: true
 
